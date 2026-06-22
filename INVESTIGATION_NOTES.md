@@ -13,7 +13,7 @@ The BNC female → BNC male combination was chosen because:
 
 ### 1. Connector modal selectors
 
-The modal uses text-based connector labels. If Thomann renames a connector the text selector breaks silently. Mitigation: used `div.cg-plugItem` as the clickable container with `hasText` matching on the connector name. Clicking the whole card mirrors real user behaviour and is more stable than clicking the text label directly. If Thomann renames a connector label, the selector will break — this is a known risk documented as an open question.
+The modal uses text-based connector labels. If Thomann renames a connector the selector breaks silently. Mitigation: used `div.cg-plugItem` as the clickable container with `hasText` matching on the connector name. Clicking the whole card mirrors real user behaviour and is more stable than clicking the text label directly. If Thomann renames a connector label, the selector will break — this is a known risk documented as an open question.
 
 ### 2. Dynamic results count
 
@@ -46,3 +46,18 @@ Initial implementation used `toBe(initialCount)` after reset — this failed bec
 - BNC female + BNC male returns approximately 8 results — stable enough for assertions.
 - Add to Basket on the product details page redirects directly to the basket page — no notification banner, full page navigation.
 - The reset button is disabled when no connectors are selected and becomes active after selection.
+
+## Bug Reports / Observations
+
+### UI Inconsistency: Inconsistent Add to Basket behaviour
+
+**Observed:** Adding a product to the basket from the product list (PLP) shows
+a notification banner and keeps the user on the same page. Adding from the
+product detail page (PDP) redirects the user directly to the basket page with
+no option to continue browsing.
+
+**Impact:** Medium — users who want to add multiple cables and compare options
+are interrupted by the redirect from PDP. The inconsistency may cause confusion.
+
+**Status:** Observed during manual testing. Not confirmed as a defect —
+may be intentional product decision.
