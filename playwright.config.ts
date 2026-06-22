@@ -1,0 +1,21 @@
+import { defineConfig, devices } from "@playwright/test";
+
+export default defineConfig({
+  testDir: "./tests",
+  timeout: 30_000,
+  retries: 1,
+  reporter: [["html", { open: "never" }], ["list"]],
+  use: {
+    baseURL: "https://www.thomann.de",
+    headless: true,
+    screenshot: "only-on-failure",
+    video: "retain-on-failure",
+    locale: "en-GB",
+  },
+  projects: [
+    {
+      name: "chromium",
+      use: { ...devices["Desktop Chrome"] },
+    },
+  ],
+});
